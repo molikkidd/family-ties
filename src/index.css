@@ -54,7 +54,7 @@ body {
  .profileCon {
   height: 100vh;
   background-color: darkseagreen;
-  width: 50%;
+  width: 300px;
 }
 
 .proDiv {
@@ -191,6 +191,7 @@ body {
   font-size: 22px;
   font-weight: 300;
   margin: 0 0 20px;
+
 }
 .row {
   margin: 0px;
@@ -202,6 +203,8 @@ body {
 .panel-body h1{
   text-align: center;
   background-color: gold;
+  box-shadow: 0px 8px 9px rgb(54, 53, 53)
+
 }
 .bio-row p span {
   width: 100px;
@@ -243,6 +246,8 @@ margin: 3px;
   position: absolute;
   font-size: 1.5em;
   opacity: 15%;
+  box-shadow: 0px 7px 12px rgb(54, 53, 53);
+
 }
 .albums .face1, .familyTree .face1, .familyMembers .face1 {
   position: relative;
@@ -257,7 +262,39 @@ margin: 3px;
     justify-content: center;
 }
 .familyTies {
+  display: flex;
+  flex-direction: column;
   background-color: beige;
   height: 100vh;
   margin-left: 10px;
+}
+.familyTreeJumbo{
+  width: 500px;
+  height: 355px;
+}
+
+.familyTreeJumbo .carousel img{
+ height: 300px;
+ border-radius: 4%;
+}
+.familyTreeJumbo img {
+  width: 100%;
+  height: 300px;
+  border-radius: 4%;
+}
+.familyTreeJumbo h2 {
+  text-align: center;
+  background-color: darkseagreen;
+  box-shadow: 0px 7px 12px rgb(54, 53, 53);
+
+}
+
+.knownMemDiv {
+  height: 400px;
+  background-color: darkseagreen;
+  text-align: center;
+  border-radius: 4%;
+  box-shadow: 0px 7px 12px rgb(54, 53, 53);
+
+
 }
