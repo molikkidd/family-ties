@@ -1,41 +1,42 @@
-import React from "react";
-
+import React, {useState, useEffect} from "react";
+import BioItems from "./BioItems";
 const Bio = (props) => {
-    console.log('props from bio', props)
-    return <div className="proBioDiv">
+
+    const bioUser = props.profile;
+    const bioProps = props.profile.bio[0];
+    const { firstName, lastName, email } = bioUser;
+
+    console.log('inside bio.js',props.profile)
+    const [list, setList] = useState([bioProps]);
+    const [editList, setEditList] = useState(true);
+
+    useEffect(() => {
+        list ? setEditList(false) : setEditList(true);
+    },[list]);
+
+    return (
+        <div className="proBioDiv"> 
              <div className="panel">
-          <div className="bio-graph-heading">ZARD...</div>
-          <div className="panel-body bio-graph-info">
-              <h1>Bio Graph</h1>
-              <div class="row">
-                  <div class="bio-row">
-                      <p><span>First Name </span>: Camila</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Last Name </span>: Smith</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Country </span>: Australia</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Birthday</span>: 13 July 1983</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Occupation </span>: UI Designer</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Email </span>: jsmith@flatlab.com</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Mobile </span>: (12) 03 4567890</p>
-                  </div>
-                  <div class="bio-row">
-                      <p><span>Phone </span>: 88 (02) 123456</p>
-                  </div>
+                <div className="bio-graph-heading">ZARD...</div>
+                <div className="panel-body bio-graph-info">
+                <h1>Bio Graph</h1>
+                <div className="row">
+                    <div class="bio-row">
+                        <p>First Name : {firstName}</p>   
+                    </div>
+                    <div className="bio-row">
+                        <p>Last Name : {lastName}</p>        
+                    </div>
+                    <div className="bio-row">
+                        <p>Email: {email}</p>
+                    </div>
+                    <BioItems bioList={bioProps} />
               </div>
           </div>
-      </div>
-           </div>
+          </div>
+    </div>
+    );
+
 }
 
 export default Bio;

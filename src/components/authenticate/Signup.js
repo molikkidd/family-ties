@@ -7,14 +7,18 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 // const { REACT_APP_SERVER_URL } = keys;
 
 const Signup = (props) => {
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
 
-    const handleName = (e) => {
-        setName(e.target.value);
+    const handleFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+    const handleLastName = (e) => {
+        setLastName(e.target.value);
     }
 
     const handleEmail = (e) => {
@@ -33,7 +37,7 @@ const Signup = (props) => {
         e.preventDefault();
 
         if (password === confirmPassword && password.length >= 8) {
-            const newUser = { name, email, password };
+            const newUser = { firstName, lastName, email, password };
             
             axios.post(`${REACT_APP_SERVER_URL}/api/users/register`, newUser)
             .then(response => {
@@ -56,8 +60,12 @@ const Signup = (props) => {
                     <h2 className="py-2">Another {props.location.state} Signing Up!</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" name="name" value={name} onChange={handleName} className="form-control" />
+                            <label htmlFor="name">First Name</label>
+                            <input type="text" name="name" value={firstName} onChange={handleFirstName} className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="name">Last Name</label>
+                            <input type="text" name="name" value={lastName} onChange={handleLastName} className="form-control" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>

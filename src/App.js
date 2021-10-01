@@ -8,12 +8,13 @@ import './App.css';
 // Components
 import Navbar from './components/partials/Navbar';
 import Footer from './components/partials/Footer';
-import Profile from './components/profile/Profile';
 import Signup from './components/authenticate/Signup';
 import Login from './components/authenticate/Login';
 import About from './pages/About';
-import HomeContainer from './pages/homeContainer';
+import HomeContainer from './pages/HomeContainer';
 import ProfileContainer from './pages/ProfileContainer';
+import EditContainer from './pages/EditContainer';
+import NewsFeed from './pages/NewsFeedContainer';
 
 
 const familyNames = ["ZARDERS", "ZARDES", "ZARDIS", "ZARDIRS"];
@@ -62,21 +63,28 @@ function App() {
 
   return ( 
     <Router>
-      <div className="App">
+      <div >
           <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
           <div className="container mt-5">
             <Switch>
-              <Route path='/signup' component={ Signup } />
-              <Route 
-                path='/login' 
-                render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} 
-                setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} />
-              <Route path='/about' component={ About } />
-              <PrivateRoute path="/profile" component={ProfileContainer} 
-                            user={currentUser} handleLogout={handleLogout} 
-                            />
-              {/* <PrivateRoute path="/profile" render={() => <ProfileContainer user={currentUser} handleLogout={handleLogout}/>}/> */}
+              {/* HOME */}
               <Route exact path="/" render={() => <HomeContainer familyNames={familyNames}/>} />
+              {/* ABOUT */}
+              <Route path='/about' component={ About } />
+              {/* SIGN UP */}
+              <Route path='/signup' component={ Signup } />
+              {/* LOGIN  */}
+              <Route path='/login' render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} 
+                setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} />
+              {/* PROFILE */}
+              <PrivateRoute exact path="/profile" component={ProfileContainer} 
+                  user={currentUser} handleLogout={handleLogout}/>
+              {/* EDIT BIO*/}
+              <PrivateRoute path="/profile/edit" component={EditContainer}
+              user={currentUser}/>
+              {/* NEWS FEED*/}
+              <PrivateRoute path="/profile/newsfeed" component={NewsFeed}
+              user={currentUser}/>
             </Switch>
           </div>
           <Footer />

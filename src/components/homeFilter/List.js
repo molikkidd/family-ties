@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Signup from '../authenticate/Signup'
 
 const List = (props) => {
 const familyList = props.familyNames.map((family,idx) => {

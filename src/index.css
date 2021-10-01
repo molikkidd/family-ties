@@ -298,3 +298,132 @@ margin: 3px;
 
 
 }
+
+/* STYLE EDIT MENU  */
+/* Style the tab */
+.sideMenu {
+  background-color: darkseagreen;
+  height: 100vh;
+  padding: 10px;
+}
+.editCon {
+  padding-top: 5px;
+}
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 300px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+}
+
+/* NEWSFEED STYLING */
+.newsFeedDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.newsFeedCon {
+  display: flex;
+  flex-direction: column;
+  background-color: seashell;
+  width: 400px;
+  text-align: center;
+  position: fixed;
+  left: 30px;
+  bottom: 45px;
+}
+
+.albumsCon img {
+  box-shadow: 0px 6px 11px gray;
+  margin: 10px;
+}
+.albumsCon h2, .familyLinksCon h2, .newsFeedCon h4, 
+.newsBlockCon h1 {
+  background-color: #fbc02d ;
+  width: 100%;
+  box-sizing: content-box;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px gray;
+  text-align: center;
+
+}
+.familyLinksCon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: darkseagreen;
+  height: 400px;
+  width: 95%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px gray;
+  margin: 10px;
+
+}
+.albumsCon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: darkseagreen;
+  height: 400px;
+  width: 95%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px gray;
+  margin: auto;
+}
+.familyLinksCon .btn {
+  width: 90%;
+  height: 55px;
+  border: 1px solid gray;
+  margin: auto;
+  box-shadow: 0px 7px 5px gray;
+
+}
+.newsBlockCon {
+  background-color: rgb(143, 188, 143);
+  height: 100vh;
+  width: 400px;
+  margin-left: 50%;
+  overflow: auto;
+}
+
+.newsBlockCon img {
+  width: 450px;
+  height: 300px;
+}

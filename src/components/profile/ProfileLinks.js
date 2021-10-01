@@ -1,10 +1,7 @@
 import React from "react";
-import { Image} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 
-const Albums = () => {
+const ProfileLinks = () => {
     return <div className="proAlbumsDiv">
             <div className="albums">
                 <div className="face2">
@@ -29,12 +26,12 @@ const Albums = () => {
                 <i class="fa fa-user-circle"></i>
                 </div>
                 <div className="face1">
-                <Link>
-                Family Members
+                <Link to="/profile/newsfeed">
+                News Feed
                 </Link>
                 </div>
             </div>
          </div>
 }
 
-export default Albums;
+export default ProfileLinks;
