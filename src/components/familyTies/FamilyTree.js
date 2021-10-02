@@ -2,7 +2,7 @@ import React from "react";
 import { Carousel, Image,} from "react-bootstrap";
 
 const FamilyTree = () => {
-    return <div fluid className="familyTreeJumbo">
+    return <div className="familyTreeJumbo">
         <h2>FamilyTies</h2>
               <Carousel >
                 <Carousel.Item >

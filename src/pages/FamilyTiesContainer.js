@@ -2,10 +2,10 @@ import React from "react";
 import FamilyTree from "../components/familyTies/FamilyTree";
 import KnownMember from "../components/familyTies/KnownMember";
 
-const FamilyTiesContainer = () => {
+const FamilyTiesContainer = (props) => {
     return <div className="familyTies">
         <FamilyTree/>
-        <KnownMember/>
+        <KnownMember members={props}/>
     </div>
 }
 

@@ -4,7 +4,7 @@ import { Carousel,Image } from "react-bootstrap";
 const NewsItem = () => {
     return (
         <div>
-        <rssapp-wall id="bvSt9g9476NRUcJ9"></rssapp-wall>
+        <rssapp-wall id="NXB1obv1msMILdn7"></rssapp-wall>
         </div>
     )
 }

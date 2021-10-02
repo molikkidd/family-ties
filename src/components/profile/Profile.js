@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Image, Container, Row} from 'react-bootstrap';
 
 const Profile = (props) => {
-    console.log('inside profile.js props', props.profile)
+    // console.log('inside profile.js props', props)
     const { handleLogout } = props.profile;
-    const { exp, id, firstName, lastName, email } = props.profile;
+    const { exp, id, firstName, lastName, profileImage } = props.profile.user;
     const expirationTime = new Date(exp * 1000);
     let currentTime = Date.now();
-    console.log(String(expirationTime));
+    // console.log(String(expirationTime));
 
     if (currentTime >= expirationTime) {
         handleLogout();
@@ -21,7 +21,7 @@ const Profile = (props) => {
               <div className="panel">
                   <div className="user-heading round">
                       <a href="#">
-                        <Image className="proImg" src="https://i.chzbgr.com/full/9545585152/h715F6971/packaged-goods-corona-lisa"/>
+                        <Image className="proImg" src={profileImage}/>
                       </a>
                       <h1>{ firstName }, {lastName}</h1>
                   </div>

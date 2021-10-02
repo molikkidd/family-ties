@@ -2,17 +2,17 @@ import React, {useState, useEffect} from "react";
 import BioItems from "./BioItems";
 const Bio = (props) => {
 
-    const bioUser = props.profile;
-    const bioProps = props.profile.bio[0];
-    const { firstName, lastName, email } = bioUser;
+    const bioProps = props.profile.user.bio[0];
+    const { firstName, lastName, email } = props.profile.user;
 
     console.log('inside bio.js',props.profile)
-    const [list, setList] = useState([bioProps]);
-    const [editList, setEditList] = useState(true);
+    
+    // const [list, setList] = useState([bioProps]);
+    // const [editList, setEditList] = useState(true);
 
-    useEffect(() => {
-        list ? setEditList(false) : setEditList(true);
-    },[list]);
+    // useEffect(() => {
+    //     list ? setEditList(false) : setEditList(true);
+    // },[list]);
 
     return (
         <div className="proBioDiv"> 

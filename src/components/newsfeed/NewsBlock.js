@@ -6,7 +6,6 @@ const NewsBlock = () => {
         <div className="newsBlockCon">
             <h1>News Feed</h1>
             <NewsItem/>
-            
         </div>
     )
 }

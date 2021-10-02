@@ -13,7 +13,7 @@ const ProfileLinks = () => {
             </div>
             <div className="familyTree">
                 <div className="face2">
-                <i class="fa fa-tree"></i>
+                <i className="fa fa-tree"></i>
                 </div>
                 <div className="face1">
                     <Link>
@@ -23,7 +23,7 @@ const ProfileLinks = () => {
             </div>
             <div className="familyMembers">
                 <div className="face2">
-                <i class="fa fa-user-circle"></i>
+                <i className="fa fa-user-circle"></i>
                 </div>
                 <div className="face1">
                 <Link to="/profile/newsfeed">

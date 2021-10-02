@@ -63,9 +63,9 @@ function App() {
 
   return ( 
     <Router>
-      <div >
+      <div>
           <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-          <div className="container mt-5">
+          <div className="container mt-2">
             <Switch>
               {/* HOME */}
               <Route exact path="/" render={() => <HomeContainer familyNames={familyNames}/>} />
@@ -78,13 +78,13 @@ function App() {
                 setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} />
               {/* PROFILE */}
               <PrivateRoute exact path="/profile" component={ProfileContainer} 
-                  user={currentUser} handleLogout={handleLogout}/>
+                user={currentUser} handleLogout={handleLogout}/>
               {/* EDIT BIO*/}
               <PrivateRoute path="/profile/edit" component={EditContainer}
-              user={currentUser}/>
+                user={currentUser}/>
               {/* NEWS FEED*/}
               <PrivateRoute path="/profile/newsfeed" component={NewsFeed}
-              user={currentUser}/>
+                user={currentUser}/>
             </Switch>
           </div>
           <Footer />
