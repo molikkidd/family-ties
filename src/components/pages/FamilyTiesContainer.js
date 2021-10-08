@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import FamilyTree from "../components/familyTies/FamilyTree";
-import KnownMember from "../components/familyTies/KnownMember";
+import FamilyTree from "../familyTies/FamilyTree";
+import KnownMember from "../familyTies/KnownMember";
 import jwt_decode from 'jwt-decode';
 
 const FamilyTiesContainer = (props) => {

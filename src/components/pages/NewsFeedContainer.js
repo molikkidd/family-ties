@@ -1,7 +1,7 @@
 import React from "react";
-import Albums from "../components/newsfeed/Albums";
-import FamilyLinks from "../components/newsfeed/FamilyLinks";
-import NewsBlock from "../components/newsfeed/NewsBlock";
+import Albums from "../newsfeed/Albums";
+import FamilyLinks from "../newsfeed/FamilyLinks";
+import NewsBlock from "../newsfeed/NewsBlock";
 
 const NewsFeed = () => {
     return(

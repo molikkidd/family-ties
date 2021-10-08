@@ -10,12 +10,12 @@ import Navbar from './components/partials/Navbar';
 import Footer from './components/partials/Footer';
 import Signup from './components/authenticate/Signup';
 import Login from './components/authenticate/Login';
-import About from './pages/About';
-import HomeContainer from './pages/HomeContainer';
-import ProfileContainer from './pages/ProfileContainer';
-import EditContainer from './pages/EditContainer';
-import NewsFeed from './pages/NewsFeedContainer';
-import AlbumsContainer from './pages/AlbumsContainer';
+import About from './components/pages/About'
+import HomeContainer from './components/pages/HomeContainer';
+import ProfileContainer from './components/pages/ProfileContainer';
+import EditContainer from './components/pages/EditContainer';
+import NewsFeed from './components/pages/NewsFeedContainer';
+import AlbumsContainer from './components/pages/AlbumsContainer';
 
 
 const familyNames = ["ZARDERS", "ZARDES", "ZARDIS", "ZARDIRS"];

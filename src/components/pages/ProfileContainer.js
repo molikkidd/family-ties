@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
-import Profile from "../components/profile/Profile";
-import Bio from "../components/profile/Bio";
-import ProfileLinks from "../components/profile/ProfileLinks";
+import Profile from "../profile/Profile";
+import Bio from "../profile/Bio";
+import ProfileLinks from "../profile/ProfileLinks";
 import FamilyTiesContainer from "./FamilyTiesContainer";
-import setAuthToken from "../utils/setAuthToken";
+import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from 'jwt-decode';
 
 const ProfileContainer = (props) => {

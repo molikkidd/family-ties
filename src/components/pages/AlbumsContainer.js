@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from "react";
-import Album from "../components/albums/Album";
+import Album from "../albums/Album";
 import { Jumbotron, Container, Button } from "react-bootstrap";
-import setAuthToken from "../utils/setAuthToken";
+import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
 const AlbumsContainer = (props) => {

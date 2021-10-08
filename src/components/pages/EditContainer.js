@@ -1,6 +1,6 @@
 import React from "react";
 // import EditProForm from "../components/Edit/EditProForm";
-import SideMenu from "../components/edit/SideMenu";
+import SideMenu from '../edit/SideMenu'
 
 const EditContainer= (props) => {
 
