@@ -1,26 +1,20 @@
 import React from 'react'
+import MemberCard from './MemberCard'
 
 const KnownMember = (props) => {
-   const membersList = props.members.profile.user.allUsers;
-
-   console.log(membersList)
-
-    const filteredList = membersList.map(m => {       
-        let memberLast = m.lastName;
-
-        if (memberLast === 'Brown') {
-              return memberLast
-        } else {
-            console.log('didnt work')
-        }
-    })
-
+    const allMembers = props.members.map(member=> {
+            return <MemberCard firstName={member.firstName} 
+                    lastName={member.lastName} 
+                    proImage={member.bio[0].profileImage}/> 
+   })
     return <div className="knownMemDiv">
-        <h1>Known Members</h1>
-        <li>
-        {filteredList}
-        </li>
-    </div>
+                {/* <div>
+                    <h1>Known Members</h1>
+                </div> */}
+                <div className="memberDiv">
+                    {allMembers}
+                </div>
+            </div>
 }
 
 export default KnownMember;

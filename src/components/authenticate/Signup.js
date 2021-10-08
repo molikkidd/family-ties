@@ -54,6 +54,7 @@ const Signup = (props) => {
 
     if (redirect) return <Redirect to='/login' />
     return (
+        <div className="signupCon">
         <div className="row mt-4">
             <div className="col-md-7 offset-md-3">
                 <div className="card card-body">
@@ -83,6 +84,7 @@ const Signup = (props) => {
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

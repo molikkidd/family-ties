@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Image, Container, Row} from 'react-bootstrap';
 
 const Profile = (props) => {
-    // console.log('inside profile.js props', props)
     const { handleLogout } = props.profile;
-    const { exp, id, firstName, lastName, profileImage } = props.profile.user;
+    const { exp, id, firstName, lastName } = props.profile.user;
+    // const {profileImage} = props.profile.user.bio[0];
     const expirationTime = new Date(exp * 1000);
     let currentTime = Date.now();
     // console.log(String(expirationTime));
@@ -21,7 +21,7 @@ const Profile = (props) => {
               <div className="panel">
                   <div className="user-heading round">
                       <a href="#">
-                        <Image className="proImg" src={profileImage}/>
+                        <Image className="proImg" src="https://bestprofilepix.com/wp-content/uploads/2014/08/funny-cartoon-facebook-profile-pictures.jpg"/>
                       </a>
                       <h1>{ firstName }, {lastName}</h1>
                   </div>

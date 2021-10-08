@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Image,} from "react-bootstrap";
+import { Carousel, Image} from "react-bootstrap";
 
 const FamilyTree = () => {
     return <div className="familyTreeJumbo">

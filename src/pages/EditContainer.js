@@ -6,7 +6,7 @@ const EditContainer= (props) => {
 
     const userData = props.user
     return <div className="editCon">        
-            <SideMenu userData={userData}/>  
+            <SideMenu userData={userData} setCurrentUser={props.setCurrentUser}/>  
             </div>
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BioItems = (props) => { 
-    console.log('bioitems list', props.edit);
+    // console.log('bioitems list', props.edit);
     
     const bioItem = props.bioList ?
      (<div className="bioItemsDiv">

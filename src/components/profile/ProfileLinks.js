@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ProfileLinks = () => {
+const ProfileLinks = (props) => {
     return <div className="proAlbumsDiv">
             <div className="albums">
                 <div className="face2">
                 <i class="fa fa-camera-retro"></i>
                 </div>
                 <div className="face1">
-                <Link>Albums</Link>
+                <Link to='/profile/albums' user={props.user} >Albums</Link>
                 </div>
             </div>
             <div className="familyTree">

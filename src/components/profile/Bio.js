@@ -1,19 +1,10 @@
 import React, {useState, useEffect} from "react";
 import BioItems from "./BioItems";
 const Bio = (props) => {
+    // spread operator, spread all the items in the new array, make a copy 
+    // const [bio, setBio] = useState({...props.bio});
 
-    const bioProps = props.profile.user.bio[0];
-    const { firstName, lastName, email } = props.profile.user;
-
-    console.log('inside bio.js',props.profile)
-    
-    // const [list, setList] = useState([bioProps]);
-    // const [editList, setEditList] = useState(true);
-
-    // useEffect(() => {
-    //     list ? setEditList(false) : setEditList(true);
-    // },[list]);
-
+    const { firstName, lastName, email } = props.user;    
     return (
         <div className="proBioDiv"> 
              <div className="panel">
@@ -30,7 +21,7 @@ const Bio = (props) => {
                     <div className="bio-row">
                         <p>Email: {email}</p>
                     </div>
-                    <BioItems bioList={bioProps} />
+                    <BioItems bioList={props.bio} />
               </div>
           </div>
           </div>

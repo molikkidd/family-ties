@@ -15,13 +15,13 @@ import HomeContainer from './pages/HomeContainer';
 import ProfileContainer from './pages/ProfileContainer';
 import EditContainer from './pages/EditContainer';
 import NewsFeed from './pages/NewsFeedContainer';
+import AlbumsContainer from './pages/AlbumsContainer';
 
 
 const familyNames = ["ZARDERS", "ZARDES", "ZARDIS", "ZARDIRS"];
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = localStorage.getItem('jwtToken');
-  console.log('Private Route >>>', user);
   return <Route {...rest } render={(props) => {
     return user ? <Component { ...rest } { ...props }/> : <Redirect to="/login" />
   }}/>
@@ -40,8 +40,6 @@ function App() {
       setIsAuthenticated(false);
     } else {
       token = jwt_decode(localStorage.getItem('jwtToken'));
-      console.log(`decode token: >>>`);
-      console.log(token);
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
     }
@@ -65,7 +63,6 @@ function App() {
     <Router>
       <div>
           <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-          <div className="container mt-2">
             <Switch>
               {/* HOME */}
               <Route exact path="/" render={() => <HomeContainer familyNames={familyNames}/>} />
@@ -78,17 +75,19 @@ function App() {
                 setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} />
               {/* PROFILE */}
               <PrivateRoute exact path="/profile" component={ProfileContainer} 
-                user={currentUser} handleLogout={handleLogout}/>
+                user={currentUser} handleLogout={handleLogout} setIsAuthenticated={setIsAuthenticated}/>
               {/* EDIT BIO*/}
               <PrivateRoute path="/profile/edit" component={EditContainer}
-                user={currentUser}/>
+                user={currentUser} setCurrentUser={setCurrentUser}/>
               {/* NEWS FEED*/}
               <PrivateRoute path="/profile/newsfeed" component={NewsFeed}
+                user={currentUser}/>
+              {/* ALBUMS*/}
+              <PrivateRoute path="/profile/albums" component={AlbumsContainer}
                 user={currentUser}/>
             </Switch>
           </div>
           <Footer />
-        </div>
     </Router>
   );
 }

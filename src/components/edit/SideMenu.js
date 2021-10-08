@@ -25,7 +25,7 @@ const SideMenu = (props) => {
             <Col sm={9}>
             <Tab.Content>
                 <Tab.Pane eventKey="first">
-                    <EditProForm userInfo={props.userData}/>
+                    <EditProForm userInfo={props.userData} setCurrentUser={props.setCurrentUser}/>
                 </Tab.Pane>
                 <Tab.Pane eventKey="second">
                     <EditBioForm/>

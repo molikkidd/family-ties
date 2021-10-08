@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import setAuthToken from "../../utils/setAuthToken";
 import axios from 'axios';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
 const EditProForm = (props) => {
 
     // console.log('edit pro form', props.userInfo)
@@ -36,25 +35,28 @@ const EditProForm = (props) => {
                     id: props.userInfo.id,
                     firstName: firstName || props.userInfo.firstName,
                     lastName: lastName || props.userInfo.lastName,
-                    email: email|| props.userInfo.email,
+                    email: email || props.userInfo.email,
                 }
                 console.log('edit changes submitted',user)
                 // connect to api endpoint
                 axios.post(`${REACT_APP_SERVER_URL}/api/users/edit`, user)
-                .then(response => {
+                .then(async response => {
+                    console.log('response from backend edit', response.data)
+                    await props.setCurrentUser(response.data.user);
+                    console.log('props user info', props.userInfo)
                     setRedirect(true);
                 })
                 .catch(error => {
                     console.log(error);
                 })
             }
-            alert('You have made changes to the database');
-    } 
+        } 
+
         // consistently checks if the redirect is true
-    if (redirect) <Redirect to='/profile' />
+        if (redirect) return <Redirect to='/profile' />
 
     return (<div className="editCon">
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} >
             <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Profile Picture</Form.Label>
                 <Form.Control type="file" />

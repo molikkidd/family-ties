@@ -26,9 +26,14 @@ const Login = (props) => {
 
         axios.post(`${REACT_APP_SERVER_URL}/api/users/login`, userData)
         .then(response => {
-            const { token } = response.data;
+            const { token, userData } = response.data;
+            const {familyMembers, albums } = userData;
             // Save token to localStorage
             localStorage.setItem('jwtToken', token);
+            // set family in local storage
+            localStorage.setItem('familyMembers', JSON.stringify(familyMembers))
+            // set allbums to local storage
+            localStorage.setItem('albums', JSON.stringify(albums))
             // Set token to auth header
             setAuthToken(token);
             // Decode token to get the user data
@@ -45,11 +50,12 @@ const Login = (props) => {
     if (props.user) return <Redirect to='/profile' />
 
     return (
+        <div className="loginCon">
         <div className="row mt-4">
             <div className="col-md-7 offset-md-3">
                 <div className="card card-body">
                     <h2 className="py-2">Login</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form  onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" value={email} onChange={handleEmail} className="form-control" />
@@ -62,6 +68,7 @@ const Login = (props) => {
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

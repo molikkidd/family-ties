@@ -21,13 +21,26 @@ body {
 .logout-link {
   cursor: pointer;
 }
-/* HOME PAGE STYLING */
-.homeContainer {
+.loginCon, .signupCon {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
+  height: 80vh;
+}
+
+.row {
+  width: 100%;
+}
+/* HOME PAGE STYLING */
+.navbar {
+  background-color: darkseagreen;
+}
+.homeContainer {
   height: 100vh;
+}
+.homeContainer h1 {
+  position: relative;
+  color: darkseagreen;
 }
 
 .homeInput {
@@ -49,6 +62,10 @@ body {
   opacity: 40;
 }
 
+.homeImgs {
+  width: 100%;
+  height: 700px;
+}
 /* PROFILE PAGE STYLING */
 
  .profileCon {
@@ -57,21 +74,14 @@ body {
   width: 300px;
 }
 
-.proDiv {
-  margin: 10px;
-  /* font-size: 1.3em; */
-}
 .proBioDiv {
   background-color: beige;
 }
 
 .profile-nav .panel {
   box-shadow: 0px 7px 12px rgb(54, 53, 53);
-  width: 200px;
+  height: 250px;
   
-}
-.profile-nav, .profile-info{
-  /* margin-top:30px;   */
 }
 
 .profile-nav .user-heading {
@@ -80,6 +90,7 @@ body {
   border-radius: 4px 4px 0 0;
   -webkit-border-radius: 4px 4px 0 0;
   text-align: center;
+  height: inherit;
 }
 
 .profile-nav .user-heading.round a  {
@@ -87,11 +98,12 @@ body {
   -webkit-border-radius: 50%;
   border: 10px solid rgba(255,255,255,0.3);
   display: inline-block;
+  margin: 15%;
 }
 
 .profile-nav .user-heading a img {
-  width: 112px;
-  height: 112px;
+  width: 140px;
+  height: 130px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
 }
@@ -110,7 +122,6 @@ body {
   width: 100%;
   background-color: white;
   box-sizing: content-box;
-  justify-content: center;
   
 }
 .profile-nav ul {
@@ -207,6 +218,7 @@ body {
 }
 
 footer {
+  background-color: darkseagreen;
   position: fixed;
   height: 50px;
   bottom: 0px;
@@ -255,6 +267,9 @@ margin: 3px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 10px;
+    height: 350px;
+
 }
 .familyTies {
   display: flex;
@@ -284,15 +299,6 @@ margin: 3px;
 
 }
 
-.knownMemDiv {
-  height: 400px;
-  background-color: darkseagreen;
-  text-align: center;
-  border-radius: 4%;
-  box-shadow: 0px 7px 12px rgb(54, 53, 53);
-
-
-}
 
 /* STYLE EDIT MENU  */
 /* Style the tab */
@@ -375,7 +381,7 @@ margin: 3px;
   border-radius: 10px;
   box-shadow: 0px 3px 5px gray;
   text-align: center;
-
+  
 }
 .familyLinksCon {
   display: flex;
@@ -388,7 +394,7 @@ margin: 3px;
   border-radius: 10px;
   box-shadow: 0px 5px 10px gray;
   margin: 10px;
-
+  
 }
 .albumsCon {
   display: flex;
@@ -408,7 +414,7 @@ margin: 3px;
   border: 1px solid gray;
   margin: auto;
   box-shadow: 0px 7px 5px gray;
-
+  
 }
 .newsBlockCon {
   background-color: rgb(143, 188, 143);
@@ -422,4 +428,35 @@ margin: 3px;
 .newsBlockCon img {
   width: 450px;
   height: 300px;
+}
+
+
+/* STYLE MEMBER CARD */
+.knownMemDiv {
+  background-color: darkseagreen;
+  text-align: center;
+  border-radius: 4%;
+  box-shadow: 0px 7px 12px rgb(54, 53, 53);
+  width: 500px;
+}
+.memberDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.memberCard {
+  width: 130px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+.card-body {
+  padding: 10px;
+  background-color: darkseagreen;
+  box-shadow: 0px 5px 8px grey;
+  color: white;
+}
+.memberCard .card-title {
+  font-size: 12px;
 }
