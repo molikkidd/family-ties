@@ -366,7 +366,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 ## `8` Check the state of the `User`
 
-`1` Use Reacts built in State methods for user Authenication. We will set the initial state of the user to true.
+`1` Use Reacts built in State methods for user Authenication. The currentUser will be an empty string until they are authenicated. We will set the initial state of the user to true.
 
 ```js
   const [currentUser, setCurrentUser] = useState('');
@@ -390,7 +390,246 @@ useEffect(() => {
   }, []);
 ```
 
-## `23` Start App and Debug
+## `9` Set Authenicated data to the current User
+
+`1` Set the decoded `jwtToken` to the current user which has all associated and necessary information coming from the backend. 
+
+```js
+  const nowCurrentUser = (userData) => {
+    console.log('nowCurentUser is here...');
+    setCurrentUser(userData);
+    setIsAuthenticated(true);
+  }
+```
+
+`2` Delete the `jwtToken` from the localstorage after logging out
+
+```js
+  const handleLogout = () => {
+    if (localStorage.getItem('jwtToken')) {
+      localStorage.removeItem('jwtToken');
+      setCurrentUser(null);
+      setIsAuthenticated(false);
+    }
+  }
+```
+
+## `10` Add Login and SignUp routes for `Users`
+
+`1` Add about, signUp and Login below the `home` route
+
+```js
+<Route path='/about' component={ About } />
+              {/* SIGN UP */}
+<Route path='/signup' component={ Signup } />
+              {/* LOGIN  */}
+<Route path='/login' render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} 
+  setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} />
+```
+
+
+## `11` Create Signup to the associate route
+
+`1` Create an `authenicate` folder in the `components` folder then create a login and signUp component.
+
+`2` For the signup file, First import the necessary dependencies. Then grab and save the data provided by the user from the form. UseState will store and set the new data.
+
+```js
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
+
+    const handleFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+    const handleLastName = (e) => {
+        setLastName(e.target.value);
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value);
+    }
+```
+
+handle submission of form data.
+
+```js
+const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (password === confirmPassword && password.length >= 8) {
+            const newUser = { firstName, lastName, email, password };
+            
+            axios.post(`${REACT_APP_SERVER_URL}/api/users/register`, newUser)
+            .then(response => {
+                console.log(response);
+                setRedirect(true);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        } else {
+            alert('Password needs to be at least 8 characters or more. Please try again.');
+        }
+    }
+
+  if (redirect) return <Redirect to='/login' />
+
+```
+
+```js
+return (
+        <div className="signupCon">
+        <div className="row mt-4">
+            <div className="col-md-7 offset-md-3">
+                <div className="card card-body">
+                    <h2 className="py-2">Another {props.location.state} Signing Up!</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="name">First Name</label>
+                            <input type="text" name="name" value={firstName} onChange={handleFirstName} className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="name">Last Name</label>
+                            <input type="text" name="name" value={lastName} onChange={handleLastName} className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" name="email" value={email} onChange={handleEmail} className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control" />
+                        </div>
+                        <button type="submit" className="btn btn-primary float-right">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    )
+
+```
+
+The signup page is wrapped in a `Signup` function
+
+```js
+const Signup = (props) => {
+  // add code SNIPPETS from above to this function
+}
+export default Signup;
+
+```
+
+## `12` Create Login component
+
+`1` Import dependencies to the Login component
+
+```js
+import React, { useState } from 'react';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../../utils/setAuthToken';
+import { Redirect } from 'react-router-dom';
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+
+```
+
+```js
+const Login = (props) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const userData = { email, password };
+
+        axios.post(`${REACT_APP_SERVER_URL}/api/users/login`, userData)
+        .then(response => {
+            const { token, userData } = response.data;
+            const {familyMembers, albums } = userData;
+            // Save token to localStorage
+            localStorage.setItem('jwtToken', token);
+            // set family in local storage
+            localStorage.setItem('familyMembers', JSON.stringify(familyMembers))
+            // set allbums to local storage
+            localStorage.setItem('albums', JSON.stringify(albums))
+            // Set token to auth header
+            setAuthToken(token);
+            // Decode token to get the user data
+            const decoded = jwt_decode(token);
+            // Set current user
+            props.nowCurrentUser(decoded);
+        })
+        .catch(error =>{
+            console.log(error);
+            alert('Either email or password is incorrect. Please try again.');
+        });
+    }
+
+    if (props.user) return <Redirect to='/profile' />
+}
+
+export default Login;
+
+```
+
+`2` add the Login Form
+
+```js
+return (
+        <div className="loginCon">
+        <div className="row mt-4">
+            <div className="col-md-7 offset-md-3">
+                <div className="card card-body">
+                    <h2 className="py-2">Login</h2>
+                    <form  onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" name="email" value={email} onChange={handleEmail} className="form-control" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" />
+                        </div>
+                        <button type="submit" className="btn btn-primary float-right">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    )
+```
+
+## `13` Start App and Debug
 
 `1` Start up server and test app
 
