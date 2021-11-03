@@ -629,7 +629,150 @@ return (
     )
 ```
 
-## `13` Start App and Debug
+## `13` Create Profile and associate route
+
+`1` Create `ProfileContainer.js` and import dependencies 
+
+```js
+import React, {useState, useEffect} from "react";
+import Profile from "../profile/Profile";
+import Bio from "../profile/Bio";
+import ProfileLinks from "../profile/ProfileLinks";
+import FamilyTiesContainer from "./FamilyTiesContainer";
+import setAuthToken from "../../utils/setAuthToken";
+import jwt_decode from 'jwt-decode';
+
+const ProfileContainer = (props) => {
+  // add variables and logic
+}
+
+export default ProfileContainer;
+```
+
+`2` Authenicate user and set data to associate variables
+
+```js
+    const { user } = props;
+    const [currentUser, setCurrentUser] = useState({...user});
+    const [bio, setBio] = useState(null);
+    const [members, setMembers] = useState([]);
+
+    useEffect(() => {
+        // if there is no token in localStorage, then the user is in authenticated
+        if (!localStorage.getItem('jwtToken')) {
+          console.log('is Authenticated: >>> false');
+          props.setIsAuthenticated(false);
+        } else {
+          setAuthToken(localStorage.jwtToken);
+          // user = jwt_decode(localStorage.getItem('jwtToken'));
+          setCurrentUser(props.user)
+          setBio(currentUser.bio[0])
+            // get family members from local storage
+        let getFamMembers  = localStorage.getItem('familyMembers');
+        let famMembers = JSON.parse(getFamMembers)
+        // set family members to state/variable
+          setMembers(famMembers);
+        }
+      }, []);
+```
+
+`3` Add profile components
+
+```js
+   return <div className="proDiv">
+                <div className="profileCon">
+                    <Profile profile ={props}/>
+                    <Bio bio ={bio} user={currentUser}/>
+                    <ProfileLinks user={currentUser}/>
+                </div>
+                <div >
+                    <FamilyTiesContainer familyMembers={members}/>
+                </div>
+            </div>
+```
+
+`4` Add profile route to `App.js` using `PrivateRoute`
+
+```js
+<PrivateRoute exact path="/profile" component={ProfileContainer} 
+  user={currentUser} handleLogout={handleLogout}setIsAuthenticated={setIsAuthenticated}/>
+```
+
+## `14` Create `profile` folder and add `profile` components
+
+`1` create folder and add `Profile.js` file. Import dependencies
+
+```js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Image, Container, Row} from 'react-bootstrap';
+```
+
+`2` Create Profile function 
+
+```js
+const Profile = (props) => {
+    const { handleLogout } = props.profile;
+    const { exp, id, firstName, lastName } = props.profile.user;
+    // const {profileImage} = props.profile.user.bio[0];
+    const expirationTime = new Date(exp * 1000);
+    let currentTime = Date.now();
+    // console.log(String(expirationTime));
+
+    if (currentTime >= expirationTime) {
+        handleLogout();
+        alert('Session has ended. Please login again.');
+    }
+    const userData = props.profile ? 
+    (<Container>
+        <Row>
+          <div className="profile-nav col">
+              <div className="panel">
+                  <div className="user-heading round">
+                      <a href="#">
+                        <Image className="proImg" src="https://bestprofilepix.com/wp-content/uploads/2014/08/funny-cartoon-facebook-profile-pictures.jpg"/>
+                      </a>
+                      <h1>{ firstName }, {lastName}</h1>
+                  </div>
+                  <div className="proLinks">
+                  <ul>
+                      <li className="active"><a href="#"> <i className="fa fa-user"></i> Profile</a></li>
+                      <li><a href="#"> <i class="fa fa-calendar"></i> Recent Activity </a></li>
+                      <li><a href="/profile/edit"> <i class="fa fa-edit"></i> Edit profile</a></li>
+                  </ul>
+                  </div>
+              </div>
+          </div>
+        </Row>
+    </Container>) : <h4>Loading...</h4>
+
+```
+
+`3` Add error Div if user isnt logged in
+
+```js
+const errorDiv = () => {
+        return (
+            <div className="text-center pt-4">
+                <h3>Please <Link to="/login">login</Link> to view this page</h3>
+            </div>
+        );
+    };
+    
+```
+
+`4` Return profile data
+
+```js
+return (
+        <div className="proDiv">
+            { props.profile ? userData : errorDiv() }
+        </div>
+    );
+    
+```
+
+## `15` Start App and Debug
 
 `1` Start up server and test app
 

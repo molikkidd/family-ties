@@ -30,7 +30,6 @@ const ProfileContainer = (props) => {
         }
       }, []);
 
-    // console.log('client' ,client)
     return <div className="proDiv">
                 <div className="profileCon">
                     <Profile profile ={props}/>
@@ -41,7 +40,6 @@ const ProfileContainer = (props) => {
                     <FamilyTiesContainer familyMembers={members}/>
                 </div>
             </div>
-    // add bio, albums, family tree
 }
 
 export default ProfileContainer;
