@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     let token;
-    // if there is no token in localStorage, then the user is in authenticated
+    // if there is no token in localStorage, then the user isnt authenticated
     if (!localStorage.getItem('jwtToken')) {
       console.log('is Authenticated: >>> false');
       setIsAuthenticated(false);
